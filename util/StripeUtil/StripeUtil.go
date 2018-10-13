@@ -30,7 +30,7 @@ func setStripeKey() error {
 	if stripe.Key == "" {
 		stripeKey := os.Getenv("STRIPE_KEY")
 
-		if stripe.Key == "" {
+		if stripeKey == "" {
 			return errors.New("No Stripe Key")
 		}
 
