@@ -7,7 +7,7 @@ import (
 	"github.com/stripe/stripe-go/charge"
 )
 
-func chargeCard(token string) (*stripe.Charge, error) {
+func ChargeCard(token string) (*stripe.Charge, error) {
 	setStripeKey()
 
 	params := &stripe.ChargeParams{
