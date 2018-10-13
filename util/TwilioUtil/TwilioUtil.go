@@ -17,12 +17,12 @@ type twilioApiData struct {
 const twilioUrlPart = "https://api.twilio.com/2010-04-01"
 const post = "POST"
 
-func CreateMessage(body string) {
+func SendMessage(body string) (string, error) {
 	params := getParams(body)
 
 	requestBody := *strings.NewReader(params.Encode())
 
-	sendRequest(requestBody)
+	return sendRequest(requestBody)
 }
 
 func getParams(body string) url.Values {
