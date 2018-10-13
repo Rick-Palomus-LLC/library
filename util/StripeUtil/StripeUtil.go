@@ -1,6 +1,7 @@
 package StripeUtil
 
 import (
+	"errors"
 	"os"
 
 	"github.com/stripe/stripe-go"
@@ -8,7 +9,11 @@ import (
 )
 
 func ChargeCard(token string) (*stripe.Charge, error) {
-	setStripeKey()
+	stripeKeyError := setStripeKey()
+
+	if stripeKeyError != nil {
+		return nil, stripeKeyError
+	}
 
 	params := &stripe.ChargeParams{
 		Amount:      stripe.Int64(25),
@@ -21,8 +26,16 @@ func ChargeCard(token string) (*stripe.Charge, error) {
 	return charge.New(params)
 }
 
-func setStripeKey() {
+func setStripeKey() error {
 	if stripe.Key == "" {
-		stripe.Key = os.Getenv("STRIPE_KEY")
+		stripeKey := os.Getenv("STRIPE_KEY")
+
+		if stripe.Key == "" {
+			return errors.New("No Stripe Key")
+		}
+
+		stripe.Key = stripeKey
 	}
+
+	return nil
 }
