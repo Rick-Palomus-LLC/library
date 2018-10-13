@@ -16,7 +16,7 @@ func ChargeCard(token string) (*stripe.Charge, error) {
 	}
 
 	params := &stripe.ChargeParams{
-		Amount:      stripe.Int64(25),
+		Amount:      stripe.Int64(25000),
 		Currency:    stripe.String(string(stripe.CurrencyUSD)),
 		Description: stripe.String("Rick Palomus LLC Call"),
 	}
