@@ -15,5 +15,5 @@ func SendMessage(body string) (*twilio.Message, error) {
 
 	client := twilio.NewClient(twilioSid, twilioToken, nil)
 
-	return client.Messages.SendMessage(os.Getenv("SMS_NUMBER"), os.Getenv("TWILIO_NUMBER"), body, nil)
+	return client.Messages.SendMessage(os.Getenv("TWILIO_NUMBER"), os.Getenv("SMS_NUMBER"), body, nil)
 }
